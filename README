@@ -1,0 +1,1 @@
+find . -type f  | grep -v git | xargs ../sh/gpg_wrap.py -e -p <passwd>

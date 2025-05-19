@@ -1,4 +1,4 @@
 find . -type f | grep -v 'git' | grep -v '.asc' | grep -v 'README' | xargs ../sh/gpg_wrap.py -e -p <passwd>
 find . -type f -name '*.asc' | xargs git add -f
-git git add .
+git add .
 git commit -m "$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)"

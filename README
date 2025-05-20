@@ -1,4 +1,5 @@
-find . -type f | grep -v 'git' | grep -v '.asc' | grep -v 'README' | xargs ../sh/gpg_wrap.py -e -p <passwd>
-find . -type f -name '*.asc' | xargs git add -f
-git add .
-git commit -m "$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)"
+find . -type f | grep -E -v 'git|\.asc|README' | xargs gpg_wrap.py -e -p ${MY_CONTAINERS_REPO_PASSWORD} && \
+find . -type f -name '*.asc' | xargs git add -f && \
+git add . && \
+git commit -m "$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13)" && \
+git push
